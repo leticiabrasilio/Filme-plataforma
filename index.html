@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Netflix Clone</title>
+    <style>
+      /* Estilo geral */
+      body {
+        position: relative;
+        background-image: url("kkkkkk.jpg");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        color: #fff; /* Cor padrão do texto para branco */
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        z-index: -1;
+      }
+
+      /* Cabeçalho fixo */
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 20px;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 10;
+      }
+      .logo {
+        font-size: 24px;
+        color: #e50914;
+        font-weight: bold;
+      }
+      nav a {
+        color: #fff;
+        margin: 0 10px;
+        text-decoration: none;
+        font-weight: bold;
+      }
+      nav a:hover {
+        text-decoration: underline;
+      }
+      .actions {
+        display: flex;
+        align-items: center;
+      }
+      .search-container input {
+        padding: 5px 10px;
+        border-radius: 3px;
+        border: none;
+        margin-right: 10px;
+      }
+      .icon {
+        fill: #fff;
+        margin: 0 10px;
+        cursor: pointer;
+      }
+      .profile img {
+        width: 35px;
+        border-radius: 50%;
+      }
+
+      /* Espaço para o conteúdo abaixo do cabeçalho */
+      .content {
+        padding-top: 130px;
+      }
+
+      /* Seções com botões de navegação */
+      .section {
+        margin-bottom: 30px;
+        position: relative;
+      }
+      .section h2 {
+        color: #fff; /* título branco */
+        margin-bottom: 10px;
+        padding-left: 10px;
+      }
+      /* Container da linha com botões esquerda/direita */
+      .scroll-wrapper {
+        position: relative;
+      }
+      /* Botões de navegação */
+      .scroll-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        color: #fff;
+        font-size: 30px;
+        width: 40px;
+        height: 80px;
+        cursor: pointer;
+        z-index: 5;
+        border-radius: 4px;
+      }
+      .scroll-btn.left {
+        left: 0;
+      }
+      .scroll-btn.right {
+        right: 0;
+      }
+
+      /* Linha de filmes/séries */
+      .scroll-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        padding: 10px 50px; /* espaço para os botões */
+        scrollbar-width: none; /* para Firefox */
+      }
+      /* Esconde a barra no Chrome */
+      .scroll-container::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Imagens do mesmo tamanho */
+      .filme {
+        flex: 0 0 auto;
+        width: 150px;
+      }
+      .filme img {
+        width: 100%;
+        border-radius: 4px;
+        transition: transform 0.3s;
+      }
+      .filme:hover img {
+        transform: scale(1.05);
+      }
+
+      /* Estilo especial para a seção de destaque do Stranger Things */
+      .destaque-serie {
+        background-color: rgba(
+          0,
+          0,
+          0,
+          0.7
+        ); /* fundo escuro semi-transparente */
+        padding: 20px;
+        margin: 0 10px 30px 10px;
+        border-radius: 8px;
+      }
+      .destaque-serie .titulo-serie {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #fff;
+      }
+      .destaque-serie .descricao-serie {
+        font-size: 16px;
+        line-height: 1.4;
+        color: #fff;
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        .filme {
+          width: 120px;
+        }
+        .scroll-btn {
+          width: 30px;
+          height: 80px;
+          font-size: 24px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <!-- Cabeçalho -->
+      <header>
+        <div class="logo">Netflix</div>
+        <nav>
+          <a href="#">Início</a>
+          <a href="#">Filmes</a>
+          <a href="#">Séries</a>
+          <a href="#">Bombando</a>
+          <a href="#">Minha Lista</a>
+          <a href="#">Navegar por Idiomas</a>
+        </nav>
+        <div class="actions">
+          <div class="search-container">
+            <input type="text" placeholder="Pesquisar" />
+          </div>
+          <svg
+            class="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            width="24"
+            height="24"
+          >
+            <path
+              d="M12 24c1.104 0 2-.896 2-2h-4c0 1.104.896 2 2 2zm6-6V11c0-3.07-1.63-5.64-4.364-6.364V4a2 2 0 10-4 0v.636C7.266 5.36 5.636 7.929 5.636 11v6.636L4 18v1h16v-1l-1.636-1.364z"
+            />
+          </svg>
+          <div class="profile"><img src="let.jpeg" alt="Perfil" /></div>
+        </div>
+      </header>
+
+      <!-- Seção destaque do Stranger Things logo abaixo do cabeçalho -->
+      <div style="margin-top: 150px; padding: 0 10px">
+        <div class="destaque-serie">
+          <div class="titulo-serie">SÉRIE: STRANGER THINGS</div>
+          <div class="descricao-serie">
+            Quando um garoto desaparece, a cidade toda participa nas buscas. Mas
+            o que encontram são segredos, forças sobrenaturais e uma menina.<br /><br />
+            Estrelando: Winona Ryder, David Harbour, Millie Bobby Brown<br />
+            Criação: The Duffer Brothers
+          </div>
+        </div>
+      </div>
+
+      <!-- Filmes com botões -->
+      <div class="section">
+        <h2>Filmes Recentes</h2>
+        <div class="scroll-wrapper">
+          <button class="scroll-btn left" data-target="filmes-row">
+            &#9664;
+          </button>
+          <div class="scroll-container" id="filmes-row">
+            <div class="filme"><img src="N2.jpg" alt="Filme 1" /></div>
+            <div class="filme"><img src="N1.jpg" alt="Filme 2" /></div>
+            <div class="filme"><img src="N5.jpeg" alt="Filme 3" /></div>
+            <div class="filme"><img src="N3.jpg" alt="Filme Extra 1" /></div>
+            <div class="filme"><img src="N4.jpg" alt="Filme Extra 2" /></div>
+            <div class="filme"><img src="N6.jpg" alt="Filme Extra 3" /></div>
+            <div class="filme"><img src="N7.jpg" alt="Filme Extra 4" /></div>
+            <div class="filme"><img src="N8.jpg" alt="Filme Extra 5" /></div>
+            <div class="filme"><img src="N9.jpg" alt="Filme Extra 6" /></div>
+            <div class="filme"><img src="N10.jpg" alt="Filme Extra 7" /></div>
+            <div class="filme"><img src="N11.jpg" alt="Filme Extra 8" /></div>
+          </div>
+          <button class="scroll-btn right" data-target="filmes-row">
+            &#9654;
+          </button>
+        </div>
+      </div>
+
+      <!-- Séries com botões -->
+      <div class="section">
+        <h2>Séries em Destaque</h2>
+        <div class="scroll-wrapper">
+          <button class="scroll-btn left" data-target="series-row">
+            &#9664;
+          </button>
+          <div class="scroll-container" id="series-row">
+            <div class="filme"><img src="S1.webp" alt="Série 1" /></div>
+            <div class="filme"><img src="S2.jpg" alt="Série 2" /></div>
+            <div class="filme"><img src="S3.jpg" alt="Série Extra 1" /></div>
+            <div class="filme"><img src="S6.jpeg" alt="Série Extra 2" /></div>
+            <div class="filme"><img src="S5.jpg" alt="Série Extra 3" /></div>
+            <div class="filme"><img src="S8.jpg" alt="Série Extra 4" /></div>
+            <div class="filme"><img src="S9.jpg" alt="Série Extra 5" /></div>
+            <div class="filme"><img src="S10.jpg" alt="Série Extra 6" /></div>
+            <div class="filme"><img src="S11.jpg" alt="Série Extra 7" /></div>
+            <div class="filme"><img src="S7.jpg" alt="Série Extra 8" /></div>
+            <div class="filme"><img src="S14.jpg" alt="Série Extra 9" /></div>
+          </div>
+          <button class="scroll-btn right" data-target="series-row">
+            &#9654;
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Função para rolar as linhas de filmes/séries
+      document.querySelectorAll(".scroll-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const targetId = btn.getAttribute("data-target");
+          const container = document.getElementById(targetId);
+          const scrollAmount = 300; // ajuste aqui se desejar
+          if (btn.classList.contains("left")) {
+            container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+          } else {
+            container.scrollBy({ left: scrollAmount, behavior: "smooth" });
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
